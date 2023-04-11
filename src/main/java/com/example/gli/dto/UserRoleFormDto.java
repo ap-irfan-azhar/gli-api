@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.io.Serializable;
 
 @Data
-public class UserRoleFormDto implements Serializable {
-    private final String name;
+public class UserRoleFormDto {
+    private String name;
 
 }

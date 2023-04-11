@@ -3,8 +3,11 @@ package com.example.gli.service.interfaces;
 import com.example.gli.dto.UserFormDto;
 import com.example.gli.entity.User;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 public interface UserService {
-    Iterable<User> findAll();
+    Page<User> findAll(Pageable pageable);
     User save(UserFormDto user);
     User findById(Long id);
     void delete(Long id);

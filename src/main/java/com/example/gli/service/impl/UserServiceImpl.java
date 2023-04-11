@@ -6,7 +6,10 @@ import com.example.gli.entity.UserRole;
 import com.example.gli.repository.UserRepository;
 import com.example.gli.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+
+import org.springframework.data.domain.Pageable;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -18,8 +21,8 @@ public class UserServiceImpl implements UserService {
     private UserRoleServiceImpl userRoleServiceImpl;
 
     @Override
-    public Iterable<User> findAll() {
-        return userRepository.findAll();
+    public Page<User> findAll(Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 
     @Override

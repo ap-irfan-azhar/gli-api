@@ -4,9 +4,13 @@ import com.example.gli.dto.UserFormDto;
 import com.example.gli.entity.User;
 import com.example.gli.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 @RestController
@@ -17,8 +21,15 @@ public class UserController {
     private UserServiceImpl userServiceImpl;
 
     @GetMapping("/")
-    public ResponseEntity<List<User>> index() {
-        List<User> users = (List<User>) userServiceImpl.findAll();
+    public ResponseEntity<Page<User>> index(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id") String orderBy,
+            @RequestParam(defaultValue = "ASC") String direction
+    ) {
+        Pageable pageable = PageRequest
+                .of(page - 1, size, Sort.Direction.valueOf(direction), orderBy);
+        Page<User> users =  userServiceImpl.findAll(pageable);
         return ResponseEntity.ok(users);
     }
 
