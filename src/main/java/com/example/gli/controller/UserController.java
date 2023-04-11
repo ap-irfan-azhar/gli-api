@@ -1,5 +1,6 @@
 package com.example.gli.controller;
 
+import com.example.gli.dto.UserFormDto;
 import com.example.gli.entity.User;
 import com.example.gli.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +29,20 @@ public class UserController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<User> create(@RequestBody User user) {
+    public ResponseEntity<User> create(@RequestBody UserFormDto user) {
         return ResponseEntity.created(null)
                 .body(userServiceImpl.save(user));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
-        user.setId(id);
-        return ResponseEntity.ok(userServiceImpl.update(user));
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody UserFormDto user) {
+        return ResponseEntity.ok(userServiceImpl.update(user, id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<User> delete(@PathVariable Long id) {
+        userServiceImpl.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 
