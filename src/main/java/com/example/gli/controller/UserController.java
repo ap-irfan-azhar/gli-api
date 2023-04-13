@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("api/user")
 public class UserController {
 
