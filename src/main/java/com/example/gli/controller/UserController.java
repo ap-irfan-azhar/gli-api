@@ -41,6 +41,7 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
+    @CrossOrigin
     @PostMapping("/")
     public ResponseEntity<User> create(@RequestBody UserFormDto user) {
         return ResponseEntity.created(null)

@@ -24,6 +24,7 @@ public class UserRoleController {
         return userRoleServiceImpl.searchByName(name.toLowerCase());
     }
 
+    @CrossOrigin
     @PostMapping("/")
     public ResponseEntity<UserRole> create(@RequestBody UserRoleFormDto userRoleReq) {
         if (userRoleReq.getName() == null
