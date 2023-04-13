@@ -26,11 +26,12 @@ public class UserController {
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "id") String orderBy,
-            @RequestParam(defaultValue = "ASC") String direction
+            @RequestParam(defaultValue = "ASC") String direction,
+            @RequestParam(defaultValue = "") String search
     ) {
         Pageable pageable = PageRequest
                 .of(page - 1, size, Sort.Direction.valueOf(direction), orderBy);
-        Page<User> users =  userServiceImpl.findAll(pageable);
+        Page<User> users =  userServiceImpl.findAll(search, pageable);
         return ResponseEntity.ok(users);
     }
 

@@ -21,8 +21,8 @@ public class UserServiceImpl implements UserService {
     private UserRoleServiceImpl userRoleServiceImpl;
 
     @Override
-    public Page<User> findAll(Pageable pageable) {
-        return userRepository.findAll(pageable);
+    public Page<User> findAll(String search,Pageable pageable) {
+        return userRepository.search(search, pageable);
     }
 
     @Override

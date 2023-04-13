@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface UserService {
-    Page<User> findAll(Pageable pageable);
+    Page<User> findAll(String search, Pageable pageable);
     User save(UserFormDto user);
     User findById(Long id);
     void delete(Long id);
